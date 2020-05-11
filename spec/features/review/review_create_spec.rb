@@ -23,7 +23,7 @@ RSpec.describe "Shelter reivew create page.", type: :feature do
      expect(new_review.rating).to eq(5)
      expect(new_review.content).to eq("Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!")
 
-     expect(new_review.image).to eq(nil)
+     expect(new_review.image).to eq("")
      expect(page).to have_content (new_review.title)
      expect(page).to have_content (new_review.rating)
      expect(page).to have_content (new_review.content)
