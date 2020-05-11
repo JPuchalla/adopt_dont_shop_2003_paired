@@ -4,5 +4,10 @@
 <br/>
 <%= button_to "Available Pets", "/shelters/#{@shelter.id}/pets", method: :get %>
 <br/>
+<% @reviews.each do |review| %>
+  <h3><%= review.title %> <%= review.rating %> / 5 </h3>
+  <p><%= review.content %></p>
+<% end %>
+<br/>
 <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method: :get %>
 <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>

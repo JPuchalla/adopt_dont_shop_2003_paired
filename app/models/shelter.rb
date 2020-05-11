@@ -3,10 +3,10 @@ class Shelter < ApplicationRecord
   has_many :pets
 
   def all_adoptable
-    pets.find_all{|pet| pet.is_adoptable?}
+    Pet.where("adopt_status = 'adoptable' AND shelter_id = '#{id}'")
   end
 
   def all_pending
-    pets.find_all{|pet| !pet.is_adoptable?}
+    Pet.where("adopt_status = 'pending' AND shelter_id = '#{id}'")
   end
 end
