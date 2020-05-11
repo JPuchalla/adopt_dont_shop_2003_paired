@@ -3,6 +3,7 @@
 <%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip %></p>
 <br/>
 <%= button_to "Available Pets", "/shelters/#{@shelter.id}/pets", method: :get %>
+<%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 <br/>
 <% @reviews.each do |review| %>
   <h3><%= review.title %> <%= review.rating %> / 5 </h3>
