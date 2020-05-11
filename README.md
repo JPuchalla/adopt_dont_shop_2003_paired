@@ -273,7 +273,7 @@ User Story 11, Pet Update
 As a visitor
 When I visit a Pet Show page
 Then I see a link to update that Pet "Update Pet"
-When I click the link 
+When I click the link
 I am taken to '/pets/:id/edit' where I see a form to edit the pet's data including:
 - image
 - name
