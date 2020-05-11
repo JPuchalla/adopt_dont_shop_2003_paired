@@ -11,6 +11,7 @@ class SheltersController < ApplicationController
 
   def read
     @shelter = Shelter.find(params[:id])
+    @reviews = Review.where("shelter_id = #{@shelter.id}")
   end
 
   def new
