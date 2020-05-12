@@ -1,5 +1,9 @@
 <h1>All Favorites</h1>
 
+
+<% if @favorites.empty? %>
+<h2>"You have no favorited pets."</h2>
+<% end %>
 <% @favorites.each do |favorite|%>
   <%= image_tag(favorite.image) %>
   <p><%= link_to favorite.name, "/pets/#{favorite.id}" %></p>
