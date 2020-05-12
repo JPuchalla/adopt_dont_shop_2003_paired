@@ -16,7 +16,7 @@ RSpec.describe "Shelter reivew update page.", type: :feature do
    visit "/shelters/#{shelter_1.id}"
 
    click_button "Edit Review"
-   expect(current_path).to eq("/shelters/#{shelter_1.id}/reviews/edit")
+   expect(current_path).to eq("/shelters/#{shelter_1.id}/reviews/#{review_1.id}/edit")
    fill_in :title, with: "Awesome Place"
    fill_in :rating, with: 5
    fill_in :content, with: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
