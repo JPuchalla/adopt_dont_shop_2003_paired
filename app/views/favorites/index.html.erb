@@ -1,7 +1,7 @@
 <h1>All Favorites</h1>
 
 <% @favorites.each do |favorite|%>
-  <%= image_tag(pet.image) %>
-  <p><%= link_to pet.name, "/pets/#{pet.id}" %></p>
+  <%= image_tag(favorite.image) %>
+  <p><%= link_to favorite.name, "/pets/#{favorite.id}" %></p>
   <br/>
 <% end %>

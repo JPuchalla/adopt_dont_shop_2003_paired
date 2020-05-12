@@ -30,8 +30,6 @@ RSpec.describe "Favorites index page", type: :feature do
   end
   it "can show user all favorites on index visit" do
     expect(page).to have_content(@cassidy.name)
-    expect(page).to have_content(@cassidy.image)
     expect(page).to_not have_content(@hobbes.name)
-    expect(page).to_not have_content(@hobbes.image)
   end
 end
