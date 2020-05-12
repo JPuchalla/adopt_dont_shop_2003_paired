@@ -14,7 +14,8 @@ RSpec.describe "Shelter pets page", type: :feature do
                        approx_age: 10,
                        sex: "female",
                        adopt_status: 'pending',
-                       shelter_id: @shelter_1.id)
+                       shelter_id: @shelter_1.id,
+                       favorite: false)
 
     @hobbes = Pet.create(image: "smug_cat.jpg",
                        name: "Hobbes",
@@ -22,7 +23,8 @@ RSpec.describe "Shelter pets page", type: :feature do
                        approx_age: 5,
                        sex: "male",
                        adopt_status: 'adoptable',
-                       shelter_id: @shelter_1.id)
+                       shelter_id: @shelter_1.id,
+                       favorite: false)
 
     visit "/shelters/#{@shelter_1.id}/pets"
   end

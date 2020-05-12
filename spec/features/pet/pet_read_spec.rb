@@ -14,7 +14,8 @@ RSpec.describe "Pet read page", type: :feature do
                        approx_age: 10,
                        sex: "female",
                        adopt_status: 'pending',
-                       shelter_id: shelter_1.id)
+                       shelter_id: shelter_1.id,
+                       favorite: false)
 
     visit "/pets/#{@cassidy.id}"
   end

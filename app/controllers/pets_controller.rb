@@ -52,6 +52,7 @@ class PetsController < ApplicationController
     newpet_params = pet_params
     newpet_params[:shelter_id] = params[:id]
     newpet_params[:adopt_status] = "adoptable"
+    newpet_params[:favorite] = false
     newpet_params
   end
 end
