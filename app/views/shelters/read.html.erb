@@ -9,6 +9,7 @@
   <h3><%= review.title %> <%= review.rating %> / 5 </h3>
   <p><%= review.content %></p>
   <%= button_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", method: :get %>
+  <%= button_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %>
 <% end %>
 <br/>
 <%= button_to "Update Shelter", "/shelters/#{@shelter.id}/edit", method: :get %>
