@@ -27,7 +27,8 @@ RSpec.describe "Marking pet as favorite", type: :feature do
     expect(current_path).to eq("/pets/#{@cassidy.id}")
     expect(page).to have_content("You have favorited #{@cassidy.name}.")
     expect(page).to have_content("Favorited Pets: 1")
-    expect(@cassidy.favorite).to eq(true)
+    cassidy_fav = Pet.find(@cassidy.id)
+    expect(cassidy_fav.favorite).to eq(true)
   end
 
 end
