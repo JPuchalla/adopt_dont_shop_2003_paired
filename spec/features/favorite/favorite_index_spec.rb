@@ -25,14 +25,30 @@ RSpec.describe "Favorites index page", type: :feature do
                        adopt_status: 'adoptable',
                        shelter_id: @shelter_1.id,
                        favorite: false)
+  end
 
+  it "has an indicator showing the number of favorite pets" do
+    visit "/shelters"
+    expect(page).to have_content("Favorited Pets: 1")
+
+    @cassidy.update(favorite: false)
+    visit "/pets"
+    expect(page).to have_content("Favorited Pets: 0")
 
   end
+
   it "can show user all favorites on index visit" do
     visit "/favorites"
     expect(page).to have_content(@cassidy.name)
     expect(page).to_not have_content(@hobbes.name)
   end
+
+  it "has a link to the favorite pets index page" do
+    visit "/pets"
+    click_link "Favorited Pets: 1"
+    expect(current_path).to eq("/favorites")
+  end
+
   it "shows a message saying no favorite pets" do
     @cassidy.update(favorite: false)
     visit "/favorites"
