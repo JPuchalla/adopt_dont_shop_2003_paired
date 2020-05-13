@@ -43,6 +43,12 @@ RSpec.describe "Favorites index page", type: :feature do
     expect(page).to_not have_content(@hobbes.name)
   end
 
+  it "has a link to the favorite pets index page" do
+    visit "/pets"
+    click_link "Favorited Pets: 1"
+    expect(current_path).to eq("/favorites")
+  end
+
   it "shows a message saying no favorite pets" do
     @cassidy.update(favorite: false)
     visit "/favorites"
