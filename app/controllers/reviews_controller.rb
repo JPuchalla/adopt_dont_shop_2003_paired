@@ -4,8 +4,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    Review.create(new_review_params)
-    redirect_to "/shelters/#{params[:id]}"
+    new_review = Review.new(new_review_params)
+    if new_review.save
+      redirect_to "/shelters/#{params[:id]}"
+    else
+      flash[:notice] = "Not enough information to submit review."
+      redirect_to "/shelters/#{params[:id]}/reviews/new"
+    end
   end
 
   def edit
