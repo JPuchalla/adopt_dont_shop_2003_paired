@@ -14,8 +14,7 @@ RSpec.describe "Pets index page", type: :feature do
                        approx_age: 10,
                        sex: "female",
                        adopt_status: 'pending',
-                       shelter_id: @shelter_1.id,
-                       favorite: false)
+                       shelter_id: @shelter_1.id)
 
     @hobbes = Pet.create(image: "smug_cat.jpg",
                        name: "Hobbes",
@@ -23,8 +22,7 @@ RSpec.describe "Pets index page", type: :feature do
                        approx_age: 5,
                        sex: "male",
                        adopt_status: 'adoptable',
-                       shelter_id: @shelter_1.id,
-                       favorite: false)
+                       shelter_id: @shelter_1.id)
 
     visit "/pets"
   end

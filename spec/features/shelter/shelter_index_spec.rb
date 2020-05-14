@@ -65,8 +65,7 @@ RSpec.describe "Shelter index page", type: :feature do
                approx_age: 10,
                sex: "female",
                adopt_status: 'pending',
-               shelter_id: @shelter_2.id,
-               favorite: false)
+               shelter_id: @shelter_2.id)
     expect(page.body.index(@shelter_1.name)).to be < page.body.index(@shelter_2.name)
     click_on "Sort by Number of Pets"
     expect(page.body.index(@shelter_2.name)).to be < page.body.index(@shelter_1.name)
