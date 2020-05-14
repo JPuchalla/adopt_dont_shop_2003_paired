@@ -14,8 +14,7 @@ RSpec.describe "Marking pet as favorite", type: :feature do
                        approx_age: 10,
                        sex: "female",
                        adopt_status: 'pending',
-                       shelter_id: shelter_1.id,
-                       favorite: false)
+                       shelter_id: shelter_1.id)
 
     visit "/pets/#{@cassidy.id}"
   end
@@ -27,8 +26,6 @@ RSpec.describe "Marking pet as favorite", type: :feature do
     expect(current_path).to eq("/pets/#{@cassidy.id}")
     expect(page).to have_content("You have favorited #{@cassidy.name}.")
     expect(page).to have_content("Favorited Pets: 1")
-    cassidy_fav = Pet.find(@cassidy.id)
-    expect(cassidy_fav.favorite).to eq(true)
   end
 
 end

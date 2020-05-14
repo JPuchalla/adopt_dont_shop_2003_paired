@@ -11,7 +11,7 @@
   <body>
     <nav><%= link_to "Shelter Index", "/shelters", class: "nav-link" %> |
     <%= link_to "Pet Index", "/pets", class: "nav-link" %> |
-    <%= link_to "Favorited Pets: #{Pet.all_favorites.count}", "/favorites", class: "nav-link" %></nav> 
+    <%= link_to "Favorited Pets: #{favorite.count_favorites}", "/favorites", class: "nav-link" %></nav>
     <% flash.each do |type, message| %>
       <p> <%= message %> </p>
       <% end %>

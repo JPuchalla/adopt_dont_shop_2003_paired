@@ -21,16 +21,14 @@ describe Shelter, type: :model do
                          approx_age: 10,
                          sex: "F",
                          adopt_status: 'pending',
-                         shelter_id: @shelter.id,
-                         favorite: false)
+                         shelter_id: @shelter.id)
 
       @hobbes = Pet.create(image: "smug_cat.jpg",
                          name: "Hobbes",
                          approx_age: 5,
                          sex: "M",
                          adopt_status: 'adoptable',
-                         shelter_id: @shelter.id,
-                         favorite: false)
+                         shelter_id: @shelter.id)
     end
 
     it "#all_adoptable" do

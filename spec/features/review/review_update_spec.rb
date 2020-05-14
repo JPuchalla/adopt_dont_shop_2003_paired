@@ -36,7 +36,6 @@ RSpec.describe "Shelter reivew update page.", type: :feature do
   end
 
   it "Puts out a message when a review is incomplete." do
-
     click_button "Edit Review"
     fill_in :title, with: ""
     click_button "Edit Review"
@@ -50,22 +49,21 @@ RSpec.describe "Shelter reivew update page.", type: :feature do
     expect(page).to have_content ("Not enough information to edit review.")
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit")
 
+    fill_in :content, with: ""
+    click_button "Edit Review"
 
-   fill_in :content, with: ""
-   click_button "Edit Review"
+    expect(page).to have_content ("Not enough information to edit review.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit")
 
-   expect(page).to have_content ("Not enough information to edit review.")
-   expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit")
+    fill_in :title, with: "Awesome Place"
+    fill_in :rating, with: 5
+    fill_in :content, with: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
+    click_button "Edit Review"
 
-   fill_in :title, with: "Awesome Place"
-   fill_in :rating, with: 5
-   fill_in :content, with: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
-   click_button "Edit Review"
-
-   expect(current_path).to eq("/shelters/#{@shelter_1.id}")
-   new_review = Review.find("#{@review_1.id}")
-   expect(new_review.title).to eq("Awesome Place")
-   expect(new_review.rating).to eq(5)
-   expect(new_review.content).to eq("Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!")
- end
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
+    review_edit = Review.find("#{@review_1.id}")
+    expect(review_edit.title).to eq("Awesome Place")
+    expect(review_edit.rating).to eq(5)
+    expect(review_edit.content).to eq("Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!")
+  end
 end
