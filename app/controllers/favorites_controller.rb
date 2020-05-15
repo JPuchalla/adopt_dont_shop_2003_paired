@@ -4,10 +4,18 @@ class FavoritesController < ApplicationController
   end
 
   def update
-    pet = Pet.find(params[:id])
-    favorite.fav_pet(pet)
+    pet = Pet.find(params[:pet_id])
+    favorite.fav_pet(params[:pet_id])
     session[:favorite] = favorite.contents
     flash[:notice] = "You have favorited #{pet.name}."
-    redirect_to "/pets/#{params[:id]}"
+    redirect_to "/pets/#{params[:pet_id]}"
+  end
+
+  def destroy
+    pet = Pet.find(params[:pet_id])
+    favorite.remove_fav(params[:pet_id])
+    session[:favorite] = favorite.contents
+    flash[:notice] = "Removed #{pet.name} from favorites."
+    redirect_to "/pets/#{params[:pet_id]}"
   end
 end
