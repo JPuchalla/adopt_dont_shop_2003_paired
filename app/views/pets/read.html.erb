@@ -10,6 +10,10 @@
 <%= @pet.adopt_status %> adoption.
 <%= button_to "Change to Adoptable", "/pets/#{@pet.id}/adoptable", method: :patch %>
 <% end %></h3>
-<%= button_to "Favorite Pet", "/pets/#{@pet.id}/favorite", method: :patch %> 
+<% if !favorite.in_favorites?(@pet.id) %>
+<%= button_to "Favorite Pet", "/favorites/#{@pet.id}", method: :patch %>
+<% else %>
+<%= button_to "Remove Favorite", "/favorites/#{@pet.id}", method: :delete %>
+<% end %>
 <%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method: :get %>
 <%= button_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>

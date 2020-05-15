@@ -24,14 +24,14 @@ describe Favorite, type: :model do
                      sex: "M",
                      adopt_status: 'adoptable',
                      shelter_id: shelter_1.id)
-        @favs = Favorite.new([@cassidy])
+        @favs = Favorite.new([@cassidy.id])
       end
       it "#count_favorites" do
         expect(@favs.count_favorites).to eq(1)
       end
       it "#fav_pet" do
-        @favs.fav_pet(@hobbes)
-        expect(@favs.contents).to eq([@cassidy, @hobbes])
+        @favs.fav_pet(@hobbes.id)
+        expect(@favs.contents).to eq([@cassidy.id, @hobbes.id])
       end
   end
 end
