@@ -6,7 +6,9 @@
 <% end %>
 <% @favorites.each do |id|%>
   <% pet = favorite.get_pet(id) %>
+  <section class = "favorite-<%= id %>">
   <%= image_tag(pet.image) %>
   <p><%= link_to pet.name, "/pets/#{id}" %></p>
-  <br/>
+  <%= button_to "Remove Favorite", "/favorites/#{id}", method: :delete, params: {prev_page: "/favorites"} %>
+  </section>
 <% end %>
