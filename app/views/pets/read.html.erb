@@ -2,7 +2,7 @@
 <%= image_tag(@pet.image) %>
 <h2>Age: <%= @pet.approx_age %>, <%= @pet.sex %></h2>
 <p><%= @pet.description %></p>
-<%= button_to "All Applications.", "/pets/#{@pet.id}/applications", method: :get %>
+<%= button_to "All Applications", "/pets/#{@pet.id}/applications", method: :get %>
 <h3><%= @pet.name %> is
 <% if @pet.is_adoptable? %>
 <%= @pet.adopt_status %>.

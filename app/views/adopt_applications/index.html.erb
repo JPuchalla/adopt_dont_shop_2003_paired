@@ -1,8 +1,11 @@
 <h1>All Applications for <%= link_to @pet.name, "/pets/#{@pet.id}"%> </h1>
-
+<% if @applicants.empty? %>
+<h2>No applications for <%= @pet.name %></h2>
+<% else %>
 <li> <% @applicants.each do |app|%>
   <ul>
     <%= link_to app.name, "/applications/#{app.id}" %>
   </ul>
   <% end %>
 </li>
+<% end %>
