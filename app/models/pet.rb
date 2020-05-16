@@ -1,6 +1,8 @@
 class Pet < ApplicationRecord
   validates_presence_of :name
   belongs_to :shelter
+  has_many :pet_applications
+  has_many :adopt_applications, through: :pet_applications
 
   def self.number_pets
     count

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Marking pet as favorite", type: :feature do
+RSpec.describe "Applying for adoption", type: :feature do
   it "can create an application for a favorited pet" do
     shelter_1 = Shelter.create(name: "Dumb Friends League",
                                address: "2080 S. Quebec St.",
@@ -41,16 +41,20 @@ RSpec.describe "Marking pet as favorite", type: :feature do
     visit "/favorites"
     click_button "Apply for Adoption"
     expect(current_path).to eq ("/applications/new")
-    check("checkbox-#{cassidy.id}")
-    check("checkbox-#{hobbes.id}")
-    expect(page).to have_css("checkbox-#{sonic.id}")
+    within (".checkbox-#{cassidy.id}") do
+      check("pet_ids_")
+    end
+    within (".checkbox-#{hobbes.id}") do
+      check("pet_ids_")
+    end
+    expect(page).to have_css(".checkbox-#{sonic.id}")
 
     fill_in :name, with: "John Doe"
     fill_in :address, with: "1500 Colfax Ave"
     fill_in :city, with: "Denver"
     fill_in :state, with: "CO"
     fill_in :zip, with: 80230
-    fill_in :phone_number, with: "(303) 867-5309"
+    fill_in :phone, with: "(303) 867-5309"
     fill_in :description, with: "I've got a a pet friendly place with room for a dog and a cat and I love them"
     click_button "Submit Application"
 
