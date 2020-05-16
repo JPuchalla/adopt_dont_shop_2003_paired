@@ -30,20 +30,26 @@ RSpec.describe "pet applications index", type: :feature do
                        sex: "male",
                        adopt_status: 'adoptable',
                        shelter_id: @shelter_1.id)
-
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id)
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id)
   end
 
   it "shows all applicants on a pet shop page" do
+
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id)
 
     visit "/pets/#{@hobbes.id}"
     click_button "All Applications"
     expect(current_path).to eq("/pets/#{@hobbes.id}/applications")
     expect(page).to have_link("#{@francis.name}")
     expect(page).to have_link("#{@peter_pan.name}")
-
-
-
   end
+
+  it "shows a message if there are no applications" do
+
+      visit "/pets/#{@hobbes.id}"
+      click_button "All Applications"
+      expect(current_path).to eq("/pets/#{@hobbes.id}/applications")
+      expect(page).to have_content("No applications for #{@hobbes.name}")
+    end
+
 end
