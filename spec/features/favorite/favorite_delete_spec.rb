@@ -26,7 +26,6 @@ RSpec.describe "can delete and update favorites count", type: :feature do
 
   end
 
-
   it "can delete favorite and update pets show page." do
     visit "/pets/#{@cassidy.id}"
     click_button "Favorite Pet"
@@ -55,5 +54,20 @@ RSpec.describe "can delete and update favorites count", type: :feature do
     expect(page).to_not have_css (".favorite-#{@cassidy.id}")
     expect(page).to have_content(@hobbes.name)
     expect(page).to have_content("Favorited Pets: 1")
+  end
+
+  it "can remove all favorites from the index page at once" do
+    visit "/pets/#{@cassidy.id}"
+    click_button "Favorite Pet"
+    visit "/pets/#{@hobbes.id}"
+    click_button "Favorite Pet"
+    visit '/favorites'
+    expect(page).to have_content("Favorited Pets: 2")
+    click_button "Remove All Favorites"
+    expect(current_path).to eq "/favorites"
+    expect(page).to_not have_content(@cassidy.name)
+    expect(page).to_not have_content(@hobbes.name)
+    expect(page).to have_content("You have no favorited pets.")
+    expect(page).to have_content("Favorited Pets: 0")
   end
 end
