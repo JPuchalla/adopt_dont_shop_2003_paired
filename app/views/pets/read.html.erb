@@ -13,7 +13,7 @@
 <% if !favorite.in_favorites?(@pet.id) %>
 <%= button_to "Favorite Pet", "/favorites/#{@pet.id}", method: :patch %>
 <% else %>
-<%= button_to "Remove Favorite", "/favorites/#{@pet.id}", method: :delete %>
+<%= button_to "Remove Favorite", "/favorites/#{@pet.id}", method: :delete, params: {prev_page: "/pets/#{@pet.id}"} %>
 <% end %>
 <%= button_to "Update Pet", "/pets/#{@pet.id}/edit", method: :get %>
 <%= button_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>
