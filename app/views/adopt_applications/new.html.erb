@@ -1,0 +1,31 @@
+<h1>Adoption Application</h1>
+
+<%= form_tag "/applications" do %>
+  <% @favorites.each do |pet_id|%>
+    <% pet = favorite.get_pet(pet_id) %>
+    <p class = "checkbox-<%= pet_id %>"><%= pet.name %>:
+    <%= check_box_tag 'pet_ids[]', pet_id %></p>
+  <% end %>
+  <%= label_tag :name, "Applicant Name:" %>
+  <%= text_field_tag :name %>
+  <br/>
+  <%= label_tag :address, "Address:" %>
+  <%= text_field_tag :address %>
+  <br/>
+  <%= label_tag :city, "City:" %>
+  <%= text_field_tag :city %>
+  <br/>
+  <%= label_tag :state, "State:" %>
+  <%= text_field_tag :state %>
+  <br/>
+  <%= label_tag :zip, "ZIP Code:" %>
+  <%= text_field_tag :zip %>
+  <br/>
+  <%= label_tag :phone, "Phone Number" %>
+  <%= text_field_tag :phone %>
+  <br/>
+  <%= label_tag :description, "Why would you be a good home?" %>
+  <%= text_field_tag :description %>
+  <br/>
+  <%= submit_tag "Submit Application" %>
+<% end %>

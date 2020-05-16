@@ -6,6 +6,8 @@ describe Pet, type: :model do
   end
   describe "relationships" do
     it { should belong_to :shelter}
+    it { should have_many :pet_applications}
+    it { should have_many(:adopt_applications).through(:pet_applications)}
   end
   describe "methods" do
     before :each do
