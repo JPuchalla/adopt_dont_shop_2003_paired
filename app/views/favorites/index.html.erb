@@ -1,9 +1,11 @@
 <h1>All Favorites</h1>
 
-
 <% if @favorites.empty? %>
 <h2>You have no favorited pets.</h2>
+<% else %>
+<%= button_to "Remove All Favorites", "/favorites", method: :delete %>
 <% end %>
+
 <% @favorites.each do |id|%>
   <% pet = favorite.get_pet(id) %>
   <section class = "favorite-<%= id %>">

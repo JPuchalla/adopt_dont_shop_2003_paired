@@ -24,4 +24,8 @@ class Favorite
   def get_pet(pet_id)
     Pet.find(pet_id)
   end
+
+  def remove_all
+    @contents.clear
+  end
 end
