@@ -4,6 +4,7 @@
 <h2>You have no favorited pets.</h2>
 <% else %>
 <%= button_to "Remove All Favorites", "/favorites", method: :delete %>
+<%= button_to "Apply for Adoption", "/applications/new", method: :get %>
 <% end %>
 
 <% @favorites.each do |id|%>
