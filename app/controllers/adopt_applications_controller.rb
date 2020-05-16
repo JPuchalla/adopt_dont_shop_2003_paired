@@ -19,6 +19,10 @@ class AdoptApplicationsController < ApplicationController
     end
   end
 
+  def read
+    @applicant = AdoptApplication.find(params[:id])
+  end
+
   private
   def application_params
     params.permit(:name, :address, :city, :state, :zip, :phone, :description)
