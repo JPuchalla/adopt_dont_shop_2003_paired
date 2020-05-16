@@ -23,6 +23,11 @@ class AdoptApplicationsController < ApplicationController
     @applicant = AdoptApplication.find(params[:id])
   end
 
+  def index
+    @pet = Pet.find(params[:id])
+    @applicants = @pet.adopt_applications
+  end
+
   private
   def application_params
     params.permit(:name, :address, :city, :state, :zip, :phone, :description)
