@@ -45,11 +45,34 @@ RSpec.describe "pet applications index", type: :feature do
   end
 
   it "shows a message if there are no applications" do
+    visit "/pets/#{@hobbes.id}"
+    click_button "All Applications"
+    expect(current_path).to eq("/pets/#{@hobbes.id}/applications")
+    expect(page).to have_content("No applications for #{@hobbes.name}")
+  end
 
-      visit "/pets/#{@hobbes.id}"
-      click_button "All Applications"
-      expect(current_path).to eq("/pets/#{@hobbes.id}/applications")
-      expect(page).to have_content("No applications for #{@hobbes.name}")
+  it "shows pets with applications separate from pets without" do
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id)
+    sonic = Pet.create(image: "small_hedgehog.jpg",
+                       name: "Sonic",
+                       description: "A small hedgehog.",
+                       approx_age: 2,
+                       sex: "male",
+                       adopt_status: 'adoptable',
+                       shelter_id: @shelter_1.id)
+    visit "/pets/#{@hobbes.id}"
+    click_button "Favorite Pet"
+    visit "/pets/#{sonic.id}"
+    click_button "Favorite Pet"
+
+    visit "/favorites"
+    within ".have-application" do
+      expect(page).to have_link("#{@hobbes.name}")
     end
+    within ".no-application" do
+      expect(page).to have_link("#{sonic.name}")
+    end
+  end
 
 end
