@@ -50,9 +50,3 @@ RSpec.describe "Visiting applicaitons show page", type: :feature do
 
   end
 end
-
-
-
-
-
-# - names of all pet's that this application is for (all names of pets should be links to their show page)

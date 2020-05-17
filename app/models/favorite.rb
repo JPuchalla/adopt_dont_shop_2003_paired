@@ -28,4 +28,16 @@ class Favorite
   def remove_all
     @contents.clear
   end
+
+  def pets_w_apps
+    @contents.find_all do |pet_id|
+      !PetApplication.where("pet_id = #{pet_id}").empty?
+    end
+  end
+
+  def pets_wo_apps
+    @contents.find_all do |pet_id|
+      PetApplication.where("pet_id = #{pet_id}").empty?
+    end
+  end
 end
