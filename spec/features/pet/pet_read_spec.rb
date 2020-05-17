@@ -37,14 +37,14 @@ RSpec.describe "Pet read page", type: :feature do
     expect(current_path).to eq("/shelters")
   end
 
-  it "can switch a pet's status from adoptable to pending adoption" do
-    click_button "Change to Adoptable"
-    expect(page).to have_content "#{@cassidy.name} is adoptable"
-    expect(current_path).to eq("/pets/#{@cassidy.id}")
-
-    click_button "Change to Adoption Pending"
-    expect(page).to have_content "#{@cassidy.name} is pending adoption"
-    expect(current_path).to eq("/pets/#{@cassidy.id}")
-  end
+  # it "can switch a pet's status from adoptable to pending adoption" do
+  #   click_button "Change to Adoptable"
+  #   expect(page).to have_content "#{@cassidy.name} is adoptable"
+  #   expect(current_path).to eq("/pets/#{@cassidy.id}")
+  #
+  #   click_button "Change to Adoption Pending"
+  #   expect(page).to have_content "#{@cassidy.name} is pending adoption"
+  #   expect(current_path).to eq("/pets/#{@cassidy.id}")
+  # end
 
 end

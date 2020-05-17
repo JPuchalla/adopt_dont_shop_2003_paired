@@ -6,10 +6,9 @@
 <h3><%= @pet.name %> is
 <% if @pet.is_adoptable? %>
 <%= @pet.adopt_status %>.
-<%= button_to "Change to Adoption Pending", "/pets/#{@pet.id}/pending", method: :patch %>
 <% else %>
 <%= @pet.adopt_status %> adoption.
-<%= button_to "Change to Adoptable", "/pets/#{@pet.id}/adoptable", method: :patch %>
+On hold for <%= @applicant.name %>.
 <% end %></h3>
 <% if !favorite.in_favorites?(@pet.id) %>
 <%= button_to "Favorite Pet", "/favorites/#{@pet.id}", method: :patch %>
