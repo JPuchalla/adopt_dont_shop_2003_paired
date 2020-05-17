@@ -13,7 +13,7 @@ RSpec.describe "Favorites index page", type: :feature do
                        description: "A very adorable pupper.",
                        approx_age: 10,
                        sex: "female",
-                       adopt_status: 'pending',
+                       adopt_status: 'adoptable',
                        shelter_id: @shelter_1.id)
 
     @hobbes = Pet.create(image: "smug_cat.jpg",

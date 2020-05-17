@@ -13,7 +13,7 @@ RSpec.describe "Marking pet as favorite", type: :feature do
                        description: "A very adorable pupper.",
                        approx_age: 10,
                        sex: "female",
-                       adopt_status: 'pending',
+                       adopt_status: 'adoptable',
                        shelter_id: shelter_1.id)
 
     visit "/pets/#{@cassidy.id}"
