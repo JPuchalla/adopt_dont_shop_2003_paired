@@ -7,5 +7,8 @@
 </p>
 <br/>
 <% @applicant.pets.each do |pet| %>
+<section class = "app-<%= pet.id  %>">
 <%= link_to pet.name, "/pets/#{pet.id}" %>
+<%= button_to "Approve Application", "/pets/#{pet.id}/applications", method: :patch, params: {applicant: @applicant.id} %>
+</section>
 <% end %>

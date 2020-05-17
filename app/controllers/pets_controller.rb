@@ -5,6 +5,9 @@ class PetsController < ApplicationController
 
   def read
     @pet = Pet.find(params[:id])
+    if !params[:applicant].nil?
+      @applicant = AdoptApplication.find(params[:applicant])
+    end
   end
 
   def new
@@ -29,18 +32,6 @@ class PetsController < ApplicationController
   def destroy
     Pet.destroy(params[:id])
     redirect_to "/pets"
-  end
-
-  def adoptable
-    pet = Pet.find(params[:id])
-    pet.update(adopt_status: "adoptable")
-    redirect_to "/pets/#{pet.id}"
-  end
-
-  def pending
-    pet = Pet.find(params[:id])
-    pet.update(adopt_status: "pending")
-    redirect_to "/pets/#{pet.id}"
   end
 
   private
