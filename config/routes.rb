@@ -31,5 +31,4 @@ Rails.application.routes.draw do
   get '/applications/new', to: 'adopt_applications#new'
   get '/applications/:id', to: 'adopt_applications#read'
   patch '/applications/:id', to: 'adopt_applications#update'
-
 end

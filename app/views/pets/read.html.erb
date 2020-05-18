@@ -8,7 +8,7 @@
 <%= @pet.adopt_status %>.
 <% else %>
 <%= @pet.adopt_status %> adoption.
-On hold for <%= @applicant.name %>.
+On hold for <%= link_to @applicant.name, "/applications/#{@applicant.id}" %>.
 <% end %></h3>
 <% if !favorite.in_favorites?(@pet.id) %>
 <%= button_to "Favorite Pet", "/favorites/#{@pet.id}", method: :patch %>

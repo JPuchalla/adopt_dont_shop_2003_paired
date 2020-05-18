@@ -34,8 +34,8 @@ RSpec.describe "pet applications index", type: :feature do
 
   it "shows all applicants on a pet shop page" do
 
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id)
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id, approval: false)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id, approval: false)
 
     visit "/pets/#{@hobbes.id}"
     click_button "All Applications"
@@ -52,8 +52,8 @@ RSpec.describe "pet applications index", type: :feature do
   end
 
   it "shows pets with applications separate from pets without" do
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id)
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id, approval: false)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id, approval: false)
     sonic = Pet.create(image: "small_hedgehog.jpg",
                        name: "Sonic",
                        description: "A small hedgehog.",

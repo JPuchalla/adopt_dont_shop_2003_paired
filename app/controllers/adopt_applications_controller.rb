@@ -7,7 +7,8 @@ class AdoptApplicationsController < ApplicationController
     applicant = AdoptApplication.new(application_params)
     if !params[:pet_ids].nil? && applicant.save
       params[:pet_ids].each do |pet_id|
-        PetApplication.create(pet_id: pet_id, adopt_application_id: applicant.id)
+        PetApplication.create(pet_id: pet_id,
+          adopt_application_id: applicant.id, approval: false)
         favorite.remove_fav(pet_id)
       end
       session[:favorite] = favorite.contents
@@ -31,7 +32,9 @@ class AdoptApplicationsController < ApplicationController
   def edit
     pet = Pet.find(params[:id])
     pet.update(adopt_status: "pending")
-    redirect_to "/pets/#{pet.id}?applicant=#{params[:applicant]}"
+    app = PetApplication.where("pet_id = #{pet.id} AND adopt_application_id = #{params[:applicant]}")
+    app.first.update(approval: true)
+    redirect_to "/pets/#{pet.id}"
   end
 
   def update

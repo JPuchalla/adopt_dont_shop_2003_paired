@@ -5,8 +5,8 @@ class PetsController < ApplicationController
 
   def read
     @pet = Pet.find(params[:id])
-    if !params[:applicant].nil?
-      @applicant = AdoptApplication.find(params[:applicant])
+    if !@pet.pet_applications.find_by(approval: true).nil?
+      @applicant = @pet.pet_applications.find_by(approval: true).adopt_application
     end
   end
 

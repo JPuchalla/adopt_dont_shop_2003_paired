@@ -32,8 +32,8 @@ RSpec.describe "Approving an Application", type: :feature do
                       adopt_status: 'adoptable',
                       shelter_id: @shelter_1.id)
 
-    PetApplication.create(pet_id: @sonic.id, adopt_application_id: @peter.id)
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter.id)
+    PetApplication.create(pet_id: @sonic.id, adopt_application_id: @peter.id, approval: false)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter.id, approval: false)
   end
 
   it "can approve an application for a specific pet when clicked on" do
