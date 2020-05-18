@@ -32,8 +32,8 @@ RSpec.describe "Visiting applicaitons show page", type: :feature do
                       adopt_status: 'adoptable',
                       shelter_id: @shelter_1.id)
 
-    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @application_1.id)
-    PetApplication.create(pet_id: @sonic.id, adopt_application_id: @application_1.id)
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @application_1.id, approval: false)
+    PetApplication.create(pet_id: @sonic.id, adopt_application_id: @application_1.id, approval: false)
   end
 
   it "user sees the application show page" do
