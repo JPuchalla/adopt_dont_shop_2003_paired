@@ -48,6 +48,10 @@ RSpec.describe "Approving an Application", type: :feature do
 
   it "can approve an application for any number of pets" do
     visit "/applications/#{@peter.id}"
+    click_button("Approve All Selected")
+    expect(page).to have_content("You didn't select any pets.")
+    expect(current_path).to eq("/applications/#{@peter.id}")
+
     within ".app-#{@hobbes.id}" do
       check "pet_ids_"
     end
@@ -55,9 +59,53 @@ RSpec.describe "Approving an Application", type: :feature do
       check "pet_ids_"
     end
     click_button("Approve All Selected")
+
     expect(current_path).to eq("/applications/#{@peter.id}")
     expect(page).to have_content("Application approved for all selections.")
     expect(Pet.find(@hobbes.id).adopt_status).to eq('pending')
     expect(Pet.find(@sonic.id).adopt_status).to eq('pending')
+  end
+
+  it "will only allow one approved application per pet" do
+   john_jones = AdoptApplication.create(name: "John Jones",
+                               address: "Mars St",
+                               city: "Mars Capital",
+                               state: "MS",
+                               zip: "99999",
+                               phone: "9991112233",
+                               description: "Looking for an animal from a different planet.")
+
+    PetApplication.create(pet_id: @sonic.id, adopt_application_id: john_jones.id, approval: false)
+    visit "/applications/#{@peter.id}"
+    within ".app-#{@sonic.id}" do
+      click_button("Approve Application")
+    end
+    visit "/applications/#{john_jones.id}"
+    within ".app-#{@sonic.id}" do
+      click_button("Approve Application")
+    end
+    expect(current_path).to eq("/applications/#{john_jones.id}")
+    expect(page).to have_content("#{@sonic.name} is pending adoption elsewhere.")
+    visit "/pets/#{@sonic.id}/applications"
+    expect(page).to have_content("#{john_jones.name}")
+    PetApplication.create(pet_id: @hobbes.id, adopt_application_id: john_jones.id, approval: false)
+    visit "/applications/#{john_jones.id}"
+    within ".app-#{@hobbes.id}" do
+      check "pet_ids_"
+    end
+    within ".app-#{@sonic.id}" do
+      check "pet_ids_"
+    end
+    click_button("Approve All Selected")
+    expect(page).to have_content("A pet you selected is pending adoption elsewhere.")
+    within ".app-#{@hobbes.id}" do
+      check "pet_ids_"
+    end
+    click_button("Approve All Selected")
+    expect(current_path).to eq("/applications/#{john_jones.id}")
+    expect(page).to have_content("Application approved for all selections.")
+    expect(Pet.find(@hobbes.id).adopt_status).to eq('pending')
+    visit "/pets/#{@hobbes.id}"
+    expect(page).to have_content("On hold for #{john_jones.name}")
   end
 end
