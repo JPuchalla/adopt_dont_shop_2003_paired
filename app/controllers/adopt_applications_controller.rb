@@ -44,20 +44,28 @@ class AdoptApplicationsController < ApplicationController
 
   def update
     applicant = AdoptApplication.find(params[:id])
-    if !params[:pet_ids].nil? && all_adoptable?(params[:pet_ids])
-      pets = params[:pet_ids]
+    pets = params[:pet_ids]
+    if !pets.nil? && all_adoptable?(pets)
       pets.each do |pet_id|
         Pet.find(pet_id).update(adopt_status: 'pending')
         app = PetApplication.where("pet_id = #{pet_id} AND adopt_application_id = #{applicant.id}")
         app.first.update(approval: true)
       end
       flash[:notice] = "Application approved for all selections."
-    elsif !params[:pet_ids].nil?
+    elsif !pets.nil?
       flash[:notice] = "A pet you selected is pending adoption elsewhere."
     else
       flash[:notice] = "You didn't select any pets."
     end
     redirect_to "/applications/#{applicant.id}"
+  end
+
+  def delete
+    pet = Pet.find(params[:id])
+    pet.update(adopt_status: 'adoptable')
+    app = PetApplication.where("pet_id = #{pet.id} AND adopt_application_id = #{params[:applicant]}")
+    app.first.update(approval: false)
+    redirect_to "/applications/#{params[:applicant]}"
   end
 
   private

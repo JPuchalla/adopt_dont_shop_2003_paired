@@ -6,13 +6,22 @@
 <%= @applicant.description %>
 </p>
 <br/>
+<% @applicant.pets.each do |pet| %>
+  <section class = "app-<%= pet.id  %>">
+    <%= link_to pet.name, "/pets/#{pet.id}" %><br/>
+    <% if pet.is_adoptable? %>
+      <%= button_to "Approve Application", "/pets/#{pet.id}/applications", method: :patch, params: {applicant: @applicant.id} %>
+    <% else %>
+      <%= button_to "Revoke Approval", "/pets/#{pet.id}/applications", method: :delete, params: {applicant: @applicant.id} %>
+    <% end %>
+  </section>
+<% end %>
+<br/>
 <%= form_tag "/applications/#{@applicant.id}", method: :patch do %>
   <% @applicant.pets.each do |pet| %>
-    <section class = "app-<%= pet.id  %>">
-      <%= check_box_tag 'pet_ids[]', pet.id %>
-      <%= link_to pet.name, "/pets/#{pet.id}" %>
-      <%= button_to "Approve Application", "/pets/#{pet.id}/applications", method: :patch, params: {applicant: @applicant.id} %>
-    </section>
-  <% end %>
+    <section class = "check-<%= pet.id  %>">
+    <%= pet.name %>
+    <%= check_box_tag 'pet_ids[]', pet.id %></section>
+  <% end %><br/>
   <%= submit_tag "Approve All Selected" %>
 <% end %>
