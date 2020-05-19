@@ -18,9 +18,10 @@
 <% end %>
 <br/>
 <%= form_tag "/applications/#{@applicant.id}", method: :patch do %>
+  <h3>Apply for Multiple Pets at Once:</h3>
   <% @applicant.pets.each do |pet| %>
     <section class = "check-<%= pet.id  %>">
-    <%= pet.name %>
+    <%= link_to pet.name, "/pets/#{pet.id}" %>
     <%= check_box_tag 'pet_ids[]', pet.id %></section>
   <% end %><br/>
   <%= submit_tag "Approve All Selected" %>

@@ -48,8 +48,8 @@ RSpec.describe "Create pet page", type: :feature do
   end
 
   it "shows a flash message when insufficient information is provided for creating a pet" do
-
     click_button "Create Pet"
+
     fill_in :name, with: "Cassidy"
     fill_in :description, with: "A very adorable pupper."
     fill_in :approx_age, with: 10

@@ -10,6 +10,7 @@ RSpec.describe "Shelter update", type: :feature do
 
     visit "/shelters/#{@shelter_1.id}"
   end
+
   it "updates a shelter" do
     click_button "Update Shelter"
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
@@ -43,8 +44,8 @@ RSpec.describe "Shelter update", type: :feature do
   end
 
   it "has a flash message indicating which fields are missing" do
-
     click_button "Update Shelter"
+
     fill_in :name, with: nil
     click_button "Update Shelter"
     expect(page).to have_content("Missing name to update a shelter.")

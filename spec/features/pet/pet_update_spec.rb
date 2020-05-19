@@ -51,8 +51,8 @@ RSpec.describe "Pet update", type: :feature do
   end
 
   it "shows flash message for pet update when insufficient information is provided" do
-
     click_button "Update Pet"
+    
     fill_in :name, with: nil
     click_button "Update Pet"
     expect(page).to have_content("Missing name to update a pet.")

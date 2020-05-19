@@ -35,7 +35,6 @@ RSpec.describe "Favorites index page", type: :feature do
 
     visit "/pets"
     expect(page).to have_content("Favorited Pets: 1")
-
   end
 
   it "can show user all favorites on index visit" do

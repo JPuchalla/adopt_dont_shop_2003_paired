@@ -33,7 +33,6 @@ RSpec.describe "pet applications index", type: :feature do
   end
 
   it "shows all applicants on a pet shop page" do
-
     PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @francis.id, approval: false)
     PetApplication.create(pet_id: @hobbes.id, adopt_application_id: @peter_pan.id, approval: false)
 
@@ -48,7 +47,7 @@ RSpec.describe "pet applications index", type: :feature do
     visit "/pets/#{@hobbes.id}"
     click_button "All Applications"
     expect(current_path).to eq("/pets/#{@hobbes.id}/applications")
-    expect(page).to have_content("No applications for #{@hobbes.name}")
+    expect(page).to have_content("There are no applications yet.")
   end
 
   it "shows pets with applications separate from pets without" do

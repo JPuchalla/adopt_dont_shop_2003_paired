@@ -14,25 +14,25 @@ RSpec.describe "Shelter reivew update page.", type: :feature do
                              shelter_id: @shelter_1.id)
 
    visit "/shelters/#{@shelter_1.id}"
- end
-   it "It update a review for a shelter" do
-   click_button "Edit Review"
-   expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit")
-   fill_in :title, with: "Awesome Place"
-   fill_in :rating, with: 5
-   fill_in :content, with: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
-   click_button "Edit Review"
+  end
 
-   expect(current_path).to eq("/shelters/#{@shelter_1.id}")
+  it "It update a review for a shelter" do
+    click_button "Edit Review"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit")
+    fill_in :title, with: "Awesome Place"
+    fill_in :rating, with: 5
+    fill_in :content, with: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
+    click_button "Edit Review"
 
-   title_edit = "Awesome Place"
-   rating_edit = 5
-   content_edit = "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
 
-   expect(page).to have_content (title_edit)
-   expect(page).to have_content (rating_edit)
-   expect(page).to have_content (content_edit)
+    title_edit = "Awesome Place"
+    rating_edit = 5
+    content_edit = "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
 
+    expect(page).to have_content (title_edit)
+    expect(page).to have_content (rating_edit)
+    expect(page).to have_content (content_edit)
   end
 
   it "Puts out a message when a review is incomplete." do
