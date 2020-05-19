@@ -20,7 +20,7 @@ RSpec.describe "Delete shelter", type: :feature do
                              description: "A very mischievous cat.",
                              approx_age: 5,
                              sex: "male",
-                             adopt_status: 'pending',
+                             adopt_status: 'adoptable',
                              shelter_id: @shelter_1.id)
 
       end
@@ -50,6 +50,9 @@ RSpec.describe "Delete shelter", type: :feature do
 
     PetApplication.create(pet_id: @hobbes.id, adopt_application_id: peter.id, approval: true)
 
+    @hobbes.update(adopt_status: "pending")
+
+
     visit '/shelters'
     click_button "Delete #{@shelter_1.name}"
     expect(page).to have_content("Cannot delete Shelter with an approved application.")
@@ -59,12 +62,24 @@ RSpec.describe "Delete shelter", type: :feature do
 
   it "can delete all pets with the shelter if there is no approved application" do
 
-    @hobbes.update(adopt_status: "adoptable")
-
     visit '/shelters'
     click_button "Delete #{@shelter_1.name}"
     expect(page).to_not have_content(@shelter_1.name)
     visit '/pets'
     expect(page).to_not have_content(@hobbes.name)
+  end
+
+  it "can delete all reviews with the shelter" do
+
+    review_1 = Review.create(title: "Awesome place!",
+                            rating: 5,
+                            content: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!",
+                            image: nil,
+                            shelter_id: @shelter_1.id)
+
+    visit '/shelters'
+    click_button "Delete #{@shelter_1.name}"
+    expect(page).to_not have_content(@shelter_1.name)
+    expect(Review.exists?(review_1.id)).to eq(false)
   end
 end
