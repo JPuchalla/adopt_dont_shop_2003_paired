@@ -19,8 +19,26 @@ class SheltersController < ApplicationController
   end
 
   def create
-    Shelter.create(shelter_params)
-    redirect_to "/shelters"
+    shelter = Shelter.new(shelter_params)
+    if shelter.save
+      flash[:notice] = "Application submitted!"
+      redirect_to "/shelters"
+    elsif shelter_params[:name] == ""
+      flash[:notice] = "Missing name to create a shelter."
+      redirect_to "/shelters/new"
+    elsif shelter_params[:address] == ""
+      flash[:notice] = "Missing address to create a shelter."
+      redirect_to "/shelters/new"
+    elsif shelter_params[:city] == ""
+      flash[:notice] = "Missing city to create a shelter."
+      redirect_to "/shelters/new"
+    elsif shelter_params[:state] == ""
+      flash[:notice] = "Missing state to create a shelter."
+      redirect_to "/shelters/new"
+    else
+      flash[:notice] = "Missing zip code to create a shelter."
+      redirect_to "/shelters/new"
+    end
   end
 
   def edit
@@ -28,9 +46,28 @@ class SheltersController < ApplicationController
   end
 
   def update
+    # redirect_to "/shelters/#{shelter.id}"
     shelter = Shelter.find(params[:id])
-    shelter.update(shelter_params)
-    redirect_to "/shelters/#{shelter.id}"
+    if shelter.update(shelter_params)
+      flash[:notice] = "Application submitted!"
+      redirect_to "/shelters/#{shelter.id}"
+    elsif shelter_params[:name] == ""
+      flash[:notice] = "Missing name to update a shelter."
+      redirect_to "/shelters/#{shelter.id}/edit"
+    elsif shelter_params[:address] == ""
+      flash[:notice] = "Missing address to update a shelter."
+      redirect_to "/shelters/#{shelter.id}/edit"
+    elsif shelter_params[:city] == ""
+      flash[:notice] = "Missing city to update a shelter."
+      redirect_to "/shelters/#{shelter.id}/edit"
+    elsif shelter_params[:state] == ""
+      flash[:notice] = "Missing state to update a shelter."
+      redirect_to "/shelters/#{shelter.id}/edit"
+    else
+      flash[:notice] = "Missing zip code to update a shelter."
+      redirect_to "/shelters/#{shelter.id}/edit"
+    end
+
   end
 
   def destroy
