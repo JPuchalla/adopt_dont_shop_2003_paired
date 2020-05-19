@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/pets/:id/edit', to: 'pets#edit'
   get '/pets/:id/applications', to: 'adopt_applications#index'
   patch '/pets/:id/applications', to: 'adopt_applications#edit'
+  delete '/pets/:id/applications', to: 'adopt_applications#delete'
   get '/favorites', to: 'favorites#index'
   delete '/favorites', to: 'favorites#destroy'
   patch '/favorites/:pet_id', to: 'favorites#update'

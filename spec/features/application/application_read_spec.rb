@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Visiting applicaitons show page", type: :feature do
+RSpec.describe "Visiting applications show page", type: :feature do
   before :each do
     @application_1 = AdoptApplication.create(name: "Dumb Friends League",
                                address: "2080 S. Quebec St.",

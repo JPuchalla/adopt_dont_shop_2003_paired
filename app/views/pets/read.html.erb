@@ -7,7 +7,7 @@
 <% if @pet.is_adoptable? %>
 <%= @pet.adopt_status %>.
 <% else %>
-<%= @pet.adopt_status %> adoption.
+<%= @pet.adopt_status %> adoption.<br/>
 On hold for <%= link_to @applicant.name, "/applications/#{@applicant.id}" %>.
 <% end %></h3>
 <% if !favorite.in_favorites?(@pet.id) %>
