@@ -47,4 +47,48 @@ RSpec.describe "Create pet page", type: :feature do
     expect(current_path).to eq("/pets")
   end
 
+  it "shows a flash message when insufficient information is provided for creating a pet" do
+
+    click_button "Create Pet"
+    fill_in :name, with: "Cassidy"
+    fill_in :description, with: "A very adorable pupper."
+    fill_in :approx_age, with: 10
+    fill_in :sex, with: "female"
+    click_button "Create Pet"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
+    expect(page).to have_content("Missing image to create a pet.")
+
+    fill_in :image, with: "cute_dog.jpg"
+    fill_in :description, with: "A very adorable pupper."
+    fill_in :approx_age, with: 10
+    fill_in :sex, with: "female"
+    click_button "Create Pet"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
+    expect(page).to have_content("Missing name to create a pet.")
+
+    fill_in :image, with: "cute_dog.jpg"
+    fill_in :name, with: "Cassidy"
+    fill_in :approx_age, with: 10
+    fill_in :sex, with: "female"
+    click_button "Create Pet"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
+    expect(page).to have_content("Missing description to create a pet.")
+
+    fill_in :image, with: "cute_dog.jpg"
+    fill_in :name, with: "Cassidy"
+    fill_in :description, with: "A very adorable pupper."
+    fill_in :sex, with: "female"
+    click_button "Create Pet"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
+    expect(page).to have_content("Missing approximate age to create a pet.")
+
+    fill_in :image, with: "cute_dog.jpg"
+    fill_in :name, with: "Cassidy"
+    fill_in :description, with: "A very adorable pupper."
+    fill_in :approx_age, with: 10
+    click_button "Create Pet"
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
+    expect(page).to have_content("Missing sex to create a pet.")
+  end
+
 end

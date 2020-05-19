@@ -50,4 +50,33 @@ RSpec.describe "Pet update", type: :feature do
     expect(current_path).to eq("/shelters")
   end
 
+  it "shows flash message for pet update when insufficient information is provided" do
+
+    click_button "Update Pet"
+    fill_in :name, with: nil
+    click_button "Update Pet"
+    expect(page).to have_content("Missing name to update a pet.")
+    expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+
+    fill_in :image, with: nil
+    click_button "Update Pet"
+    expect(page).to have_content("Missing image to update a pet.")
+    expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+
+    fill_in :description, with: nil
+    click_button "Update Pet"
+    expect(page).to have_content("Missing description to update a pet.")
+    expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+
+    fill_in :approx_age, with: nil
+    click_button "Update Pet"
+    expect(page).to have_content("Missing approximate age to update a pet.")
+    expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+
+    fill_in :sex, with: nil
+    click_button "Update Pet"
+    expect(page).to have_content("Missing sex to update a pet.")
+    expect(current_path).to eq("/pets/#{@pet_1.id}/edit")
+  end
+
 end
