@@ -1,0 +1,18 @@
+<%= form_tag path, method: method do %>
+  <%= label_tag :name, "Pet Name:" %>
+  <%= text_field_tag :name, prefill_name %>
+  <br/>
+  <%= label_tag :image, "Image Link:" %>
+  <%= text_field_tag :image, prefill_image %>
+  <br/>
+  <%= label_tag :description, "Description:" %>
+  <%= text_field_tag :description, prefill_desc %>
+  <br/>
+  <%= label_tag :approx_age, "Approximate Age:" %>
+  <%= text_field_tag :approx_age, prefill_age %>
+  <br/>
+  <%= label_tag :sex, "Sex:" %>
+  <%= text_field_tag :sex, prefill_sex %>
+  <br/>
+  <%= submit_tag button_text %>
+<% end %>
