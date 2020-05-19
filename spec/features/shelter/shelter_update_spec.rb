@@ -42,4 +42,9 @@ RSpec.describe "Shelter update", type: :feature do
     expect(current_path).to eq("/pets")
   end
 
+  it "has a flash message indicating which fields are missing" do
+
+    
+  end
+
 end

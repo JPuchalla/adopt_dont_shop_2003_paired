@@ -23,8 +23,20 @@ class SheltersController < ApplicationController
     if shelter.save
       flash[:notice] = "Application submitted!"
       redirect_to "/shelters"
+    elsif shelter_params[:name] == ""
+      flash[:notice] = "Missing name to create a shelter."
+      redirect_to "/shelters/new"
+    elsif shelter_params[:address] == ""
+      flash[:notice] = "Missing address to create a shelter."
+      redirect_to "/shelters/new"
+    elsif shelter_params[:city] == ""
+      flash[:notice] = "Missing city to create a shelter."
+      redirect_to "/shelters/new"
+    elsif shelter_params[:state] == ""
+      flash[:notice] = "Missing state to create a shelter."
+      redirect_to "/shelters/new"
     else
-      flash[:notice] = "Insufficient Information to create a shelter."
+      flash[:notice] = "Missing zip code to create a shelter."
       redirect_to "/shelters/new"
     end
   end

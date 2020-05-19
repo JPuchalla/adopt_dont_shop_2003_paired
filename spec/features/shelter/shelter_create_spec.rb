@@ -47,7 +47,7 @@ RSpec.describe "Create shelter page", type: :feature do
     fill_in :zip, with: "80231"
     click_button "Create Shelter"
     expect(current_path).to eq('/shelters/new')
-    expect(page).to have_content("Insufficient Information to create a shelter.")
+    expect(page).to have_content("Missing name to create a shelter.")
 
     fill_in :name, with: "Dumb Friends League"
     fill_in :city, with: "Denver"
@@ -55,7 +55,7 @@ RSpec.describe "Create shelter page", type: :feature do
     fill_in :zip, with: "80231"
     click_button "Create Shelter"
     expect(current_path).to eq('/shelters/new')
-    expect(page).to have_content("Insufficient Information to create a shelter.")
+    expect(page).to have_content("Missing address to create a shelter.")
 
     fill_in :address, with: "2080 S. Quebec St."
     fill_in :name, with: "Dumb Friends League"
@@ -63,7 +63,7 @@ RSpec.describe "Create shelter page", type: :feature do
     fill_in :zip, with: "80231"
     click_button "Create Shelter"
     expect(current_path).to eq('/shelters/new')
-    expect(page).to have_content("Insufficient Information to create a shelter.")
+    expect(page).to have_content("Missing city to create a shelter.")
 
     fill_in :city, with: "Denver"
     fill_in :address, with: "2080 S. Quebec St."
@@ -71,7 +71,7 @@ RSpec.describe "Create shelter page", type: :feature do
     fill_in :zip, with: "80231"
     click_button "Create Shelter"
     expect(current_path).to eq('/shelters/new')
-    expect(page).to have_content("Insufficient Information to create a shelter.")
+    expect(page).to have_content("Missing state to create a shelter.")
 
     fill_in :state, with: "CO"
     fill_in :city, with: "Denver"
@@ -79,7 +79,8 @@ RSpec.describe "Create shelter page", type: :feature do
     fill_in :name, with: "Dumb Friends League"
     click_button "Create Shelter"
     expect(current_path).to eq('/shelters/new')
-    expect(page).to have_content("Insufficient Information to create a shelter.")
+    expect(page).to have_content("Missing zip code to create a shelter.")
+
   end
 
 end
