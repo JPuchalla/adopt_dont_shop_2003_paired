@@ -15,8 +15,26 @@ class PetsController < ApplicationController
   end
 
   def create
-    Pet.create(new_pet_params)
-    redirect_to "/shelters/#{params[:id]}/pets"
+    pet = Pet.new(new_pet_params)
+    if pet.save
+      flash[:notice] = "Pet created!"
+      redirect_to "/shelters/#{params[:id]}/pets"
+    elsif new_pet_params[:name] == ""
+      flash[:notice] = "Missing name to create a pet."
+      redirect_to "/shelters/#{params[:id]}/pets/new"
+    elsif new_pet_params[:image] == ""
+      flash[:notice] = "Missing image to create a pet."
+      redirect_to "/shelters/#{params[:id]}/pets/new"
+    elsif new_pet_params[:description] == ""
+      flash[:notice] = "Missing description to create a pet."
+      redirect_to "/shelters/#{params[:id]}/pets/new"
+    elsif new_pet_params[:approx_age] == ""
+      flash[:notice] = "Missing approximate age to create a pet."
+      redirect_to "/shelters/#{params[:id]}/pets/new"
+    else
+      flash[:notice] = "Missing sex to create a pet."
+      redirect_to "/shelters/#{params[:id]}/pets/new"
+    end
   end
 
   def edit

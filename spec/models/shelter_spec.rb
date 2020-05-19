@@ -25,6 +25,7 @@ describe Shelter, type: :model do
 
       @hobbes = Pet.create(image: "smug_cat.jpg",
                          name: "Hobbes",
+                         description: "A mischievous cat.",
                          approx_age: 5,
                          sex: "M",
                          adopt_status: 'adoptable',
