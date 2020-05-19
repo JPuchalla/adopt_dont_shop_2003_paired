@@ -1,20 +1,10 @@
 <h1>Update Pet</h1>
 
-<%= form_tag "/pets/#{@pet.id}", method: :patch do %>
-  <%= label_tag :name, "Pet Name:" %>
-  <%= text_field_tag :name, "#{@pet.name}" %>
-  <br/>
-  <%= label_tag :image, "Image Link:" %>
-  <%= text_field_tag :image, "#{@pet.image}" %>
-  <br/>
-  <%= label_tag :description, "Description:" %>
-  <%= text_field_tag :description, "#{@pet.description}" %>
-  <br/>
-  <%= label_tag :approx_age, "Approximate Age:" %>
-  <%= text_field_tag :approx_age, "#{@pet.approx_age}" %>
-  <br/>
-  <%= label_tag :sex, "Sex:" %>
-  <%= text_field_tag :sex, "#{@pet.sex}" %>
-  <br/>
-  <%= submit_tag "Update Pet" %>
-<% end %>
+<%= render partial: 'form', locals: { path: "/pets/#{@pet.id}",
+                                      method: :patch,
+                                      prefill_name: @pet.name,
+                                      prefill_image: @pet.image,
+                                      prefill_desc: @pet.description,
+                                      prefill_age: @pet.approx_age,
+                                      prefill_sex: @pet.sex,
+                                      button_text: "Update Pet" } %>

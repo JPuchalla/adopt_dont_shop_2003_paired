@@ -3,7 +3,7 @@ class PetsController < ApplicationController
     @pets = Pet.all
   end
 
-  def read
+  def show
     @pet = Pet.find(params[:id])
     if !@pet.pet_applications.find_by(approval: true).nil?
       @applicant = @pet.pet_applications.find_by(approval: true).adopt_application

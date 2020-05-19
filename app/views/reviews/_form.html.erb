@@ -1,0 +1,15 @@
+<%= form_tag path, method: method do %>
+  <%= label_tag :title, "Review Name:" %>
+  <%= text_field_tag :title, prefill_title %>
+  <br/>
+  <%= label_tag :image, "Image Link:" %>
+  <%= text_field_tag :image, prefill_image %>
+  <br/>
+  <%= label_tag :rating, "Rating (of 5):" %>
+  <%= text_field_tag :rating, prefill_rating %>
+  <br/>
+  <%= label_tag :content, "Content:" %>
+  <%= text_field_tag :content, prefill_content %>
+  <br/>
+  <%= submit_tag button_text %>
+<% end %>
