@@ -6,6 +6,9 @@
 <%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 <br/>
 <% @reviews.each do |review| %>
+  <% if !review.image.nil? %>
+    <%= image_tag(review.image) %>
+  <% end %>
   <h3><%= review.title %> <%= review.rating %> / 5 </h3>
   <p><%= review.content %></p>
   <%= button_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit", method: :get %>

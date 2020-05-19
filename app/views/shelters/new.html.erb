@@ -1,20 +1,10 @@
 <h1>Create New Shelter</h1>
 
-<%= form_tag "/shelters" do %>
-  <%= label_tag :name, "Shelter Name:" %>
-  <%= text_field_tag :name %>
-  <br/>
-  <%= label_tag :address, "Address:" %>
-  <%= text_field_tag :address %>
-  <br/>
-  <%= label_tag :city, "City:" %>
-  <%= text_field_tag :city %>
-  <br/>
-  <%= label_tag :state, "State:" %>
-  <%= text_field_tag :state %>
-  <br/>
-  <%= label_tag :zip, "ZIP Code:" %>
-  <%= text_field_tag :zip %>
-  <br/>
-  <%= submit_tag "Create Shelter" %>
-<% end %>
+<%= render partial: 'form', locals: { path: "/shelters",
+                                      method: :post,
+                                      prefill_name: nil,
+                                      prefill_address: nil,
+                                      prefill_city: nil,
+                                      prefill_state: nil,
+                                      prefill_zip: nil,
+                                      button_text: 'Create Shelter' } %>

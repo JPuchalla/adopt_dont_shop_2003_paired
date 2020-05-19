@@ -20,7 +20,7 @@ class AdoptApplicationsController < ApplicationController
     end
   end
 
-  def read
+  def show
     @applicant = AdoptApplication.find(params[:id])
   end
 

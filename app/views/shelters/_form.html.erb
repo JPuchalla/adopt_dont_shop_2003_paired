@@ -1,0 +1,18 @@
+<%= form_tag path, method: method do %>
+  <%= label_tag :name, "Shelter Name:" %>
+  <%= text_field_tag :name, prefill_name %>
+  <br/>
+  <%= label_tag :address, "Address:" %>
+  <%= text_field_tag :address, prefill_address %>
+  <br/>
+  <%= label_tag :city, "City:" %>
+  <%= text_field_tag :city, prefill_city %>
+  <br/>
+  <%= label_tag :state, "State:" %>
+  <%= text_field_tag :state, prefill_state %>
+  <br/>
+  <%= label_tag :zip, "ZIP Code:" %>
+  <%= text_field_tag :zip, prefill_zip %>
+  <br/>
+  <%= submit_tag button_text %>
+<% end %>
