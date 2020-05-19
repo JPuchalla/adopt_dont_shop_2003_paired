@@ -1,6 +1,7 @@
 class Shelter < ApplicationRecord
   validates_presence_of :name
   has_many :pets
+  has_many :reviews
 
   def all_adoptable
     Pet.where("adopt_status = 'adoptable' AND shelter_id = '#{id}'")
