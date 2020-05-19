@@ -43,8 +43,25 @@ class PetsController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    pet.update(pet_params)
-    redirect_to "/pets/#{pet.id}"
+    if pet.update(pet_params)
+      flash[:notice] = "Pet updated!"
+      redirect_to "/pets/#{pet.id}"
+    elsif pet_params[:name] == ""
+      flash[:notice] = "Missing name to update a pet."
+      redirect_to "/pets/#{pet.id}/edit"
+    elsif pet_params[:image] == ""
+      flash[:notice] = "Missing image to update a pet."
+      redirect_to "/pets/#{pet.id}/edit"
+    elsif pet_params[:description] == ""
+      flash[:notice] = "Missing description to update a pet."
+      redirect_to "/pets/#{pet.id}/edit"
+    elsif pet_params[:approx_age] == ""
+      flash[:notice] = "Missing approximate age to update a pet."
+      redirect_to "/pets/#{pet.id}/edit"
+    else
+      flash[:notice] = "Missing sex to update a pet."
+      redirect_to "/pets/#{pet.id}/edit"
+    end
   end
 
   def destroy
