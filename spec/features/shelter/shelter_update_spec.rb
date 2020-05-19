@@ -44,7 +44,31 @@ RSpec.describe "Shelter update", type: :feature do
 
   it "has a flash message indicating which fields are missing" do
 
-    
+    click_button "Update Shelter"
+    fill_in :name, with: nil
+    click_button "Update Shelter"
+    expect(page).to have_content("Missing name to update a shelter.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+
+    fill_in :address, with: nil
+    click_button "Update Shelter"
+    expect(page).to have_content("Missing address to update a shelter.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+
+    fill_in :city, with: nil
+    click_button "Update Shelter"
+    expect(page).to have_content("Missing city to update a shelter.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+
+    fill_in :state, with: nil
+    click_button "Update Shelter"
+    expect(page).to have_content("Missing state to update a shelter.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+
+    fill_in :zip, with: nil
+    click_button "Update Shelter"
+    expect(page).to have_content("Missing zip code to update a shelter.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
   end
 
 end
