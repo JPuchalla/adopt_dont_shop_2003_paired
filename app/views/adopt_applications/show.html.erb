@@ -9,7 +9,7 @@
 <% @applicant.pets.each do |pet| %>
   <section class = "app-<%= pet.id  %>">
     <%= link_to pet.name, "/pets/#{pet.id}" %><br/>
-    <% if pet.is_adoptable? %>
+    <% if !@applicant.is_approved_for_pet?(pet.id) %>
       <%= button_to "Approve Application", "/pets/#{pet.id}/applications", method: :patch, params: {applicant: @applicant.id} %>
     <% else %>
       <%= button_to "Revoke Approval", "/pets/#{pet.id}/applications", method: :delete, params: {applicant: @applicant.id} %>
