@@ -24,14 +24,36 @@ describe Favorite, type: :model do
                      sex: "M",
                      adopt_status: 'adoptable',
                      shelter_id: shelter_1.id)
-        @favs = Favorite.new([@cassidy.id])
-      end
-      it "#count_favorites" do
-        expect(@favs.count_favorites).to eq(1)
-      end
-      it "#fav_pet" do
-        @favs.fav_pet(@hobbes.id)
-        expect(@favs.contents).to eq([@cassidy.id, @hobbes.id])
-      end
+      @favs = Favorite.new([@cassidy.id])
+    end
+
+    it "#fav_pet" do
+      @favs.fav_pet(@hobbes.id)
+      expect(@favs.contents).to eq([@cassidy.id, @hobbes.id])
+    end
+
+    it "#count_favorites" do
+      expect(@favs.count_favorites).to eq(1)
+    end
+
+    it "#remove_fav" do
+      @favs.remove_fav(@cassidy.id)
+      expect(@favs.contents).to eq([])
+    end
+
+    it "#in_favorites?" do
+      expect(@favs.in_favorites?(@cassidy.id)).to eq(true)
+      expect(@favs.in_favorites?(@hobbes.id)).to eq(false)
+    end
+
+    it "#get_pet" do
+      expect(@favs.get_pet(@cassidy.id)).to eq(@cassidy)
+    end
+
+    it "#remove_all" do
+      @favs.fav_pet(@hobbes.id)
+      @favs.remove_all
+      expect(@favs.contents).to eq([])
+    end
   end
 end
