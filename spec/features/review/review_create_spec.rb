@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Shelter reivew create page.", type: :feature do
+RSpec.describe "Shelter review create page.", type: :feature do
   before(:each) do
   @shelter_1 = Shelter.create(name: "Dumb Friends League",
                              address: "2080 S. Quebec St.",
@@ -65,4 +65,23 @@ RSpec.describe "Shelter reivew create page.", type: :feature do
     expect(new_review.content).to eq("Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!")
   end
 
- end
+  it "puts out a message when a review is given an invalid rating number" do
+    click_button "Add Review"
+    fill_in :title, with: "Awesome Place"
+    fill_in :rating, with: 6
+    fill_in :content, with: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!"
+    click_button "Add Review"
+
+    expect(page).to have_content ("Please choose a valid rating.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
+
+    fill_in :title, with: "Terrible Place"
+    fill_in :rating, with: -1
+    fill_in :content, with: "I hated every second of being here."
+    click_button "Add Review"
+
+    expect(page).to have_content ("Please choose a valid rating.")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
+  end
+
+end
