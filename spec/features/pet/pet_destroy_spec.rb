@@ -59,4 +59,16 @@ RSpec.describe "Delete pet", type: :feature do
     test_pet = Pet.find(@hobbes.id)
     expect(test_pet).to eq(@hobbes)
   end
+
+  it "deleting pet removes it from favorites" do
+
+    visit "/pets/#{@hobbes.id}"
+    click_button "Favorite Pet"
+    visit "/favorites"
+    expect(page).to have_content(@hobbes.name)
+    visit "/pets/#{@hobbes.id}"
+    click_button "Delete Pet"
+    visit "/favorites"
+    expect(page).to_not have_content(@hobbes.name)
+  end
 end
