@@ -2,11 +2,11 @@
 <p><%= @shelter.address %> <br/>
 <%= @shelter.city %>, <%= @shelter.state %> <%= @shelter.zip %></p>
 <br/>
-<p>Number of pets at this shelter: <%= @shelter.count_of_pets %>
+<p>Number of pets at this shelter: <%= @shelter.count_of_pets %><br/>
+Applications on file at this shelter: <%= @shelter.count_of_apps %></p>
 <%= button_to "Available Pets", "/shelters/#{@shelter.id}/pets", method: :get %>
-Applications on file at this shelter: <%= @shelter.count_of_apps %>
-Average rating of this shelter: <%= @shelter.avg_review_rating %>
-<%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method: :get %></p>
+<br/><p>Average rating of this shelter: <%= @shelter.avg_review_rating %></p>
+<%= button_to "Add Review", "/shelters/#{@shelter.id}/reviews/new", method: :get %>
 <br/>
 <% @reviews.each do |review| %>
   <% if !review.image.nil? %>
