@@ -67,6 +67,7 @@ class PetsController < ApplicationController
   def destroy
     pet = Pet.find(params[:id])
     if pet.is_adoptable?
+      favorite.remove_fav(pet.id)
       pet.destroy
     else
       flash[:notice] = "Cannot delete pet with an approved application."
