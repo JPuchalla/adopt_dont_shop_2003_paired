@@ -4,10 +4,6 @@ class Pet < ApplicationRecord
   has_many :pet_applications
   has_many :adopt_applications, through: :pet_applications
 
-  def self.number_pets
-    count
-  end
-
   def is_adoptable?
     adopt_status == "adoptable"
   end

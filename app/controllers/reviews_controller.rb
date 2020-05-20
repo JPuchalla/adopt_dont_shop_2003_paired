@@ -7,6 +7,9 @@ class ReviewsController < ApplicationController
     new_review = Review.new(new_review_params)
     if new_review.save
       redirect_to "/shelters/#{params[:id]}"
+    elsif new_review_params[:rating].to_f > 5.0 || new_review_params[:rating].to_f < 0.0
+      flash[:notice] = "Please choose a valid rating."
+      redirect_to "/shelters/#{params[:id]}/reviews/new"
     else
       flash[:notice] = "Not enough information to submit review."
       redirect_to "/shelters/#{params[:id]}/reviews/new"

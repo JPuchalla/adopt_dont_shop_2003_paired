@@ -48,5 +48,52 @@ describe Shelter, type: :model do
       expect(last_pending).to eq(@cassidy)
     end
 
+    it "#count_of_pets" do
+      expect(@shelter.count_of_pets).to eq(2)
+    end
+
+    it "#avg_review_rating" do
+      review_1 = Review.create(title: "Awesome place!",
+                                rating: 5,
+                                content: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!",
+                                image: nil,
+                                shelter_id: @shelter.id)
+
+      review_2 = Review.create(title: "Found the one",
+                                rating: 4,
+                                content: "It took us a bit of time, but we found that special little guy to bring home to the kids!",
+                                image: nil,
+                                shelter_id: @shelter.id)
+
+        expect(@shelter.avg_review_rating).to eq(4.5)
+    end
+
+    it "#count_of_apps" do
+      francis = AdoptApplication.create(name: "Francis",
+                                 address: "2080 S. Quebec St.",
+                                 city: "Denver",
+                                 state: "CO",
+                                 zip: "80231",
+                                 phone: "2023332291",
+                                 description: "I am a perfect human.")
+
+      john_jones = AdoptApplication.create(name: "John Jones",
+                                  address: "Mars St",
+                                  city: "Mars Capital",
+                                  state: "MS",
+                                  zip: "99999",
+                                  phone: "9991112233",
+                                  description: "Looking for an animal from a different planet.")
+
+      PetApplication.create(pet_id: @cassidy.id, adopt_application_id: francis.id, approval: false)
+      PetApplication.create(pet_id: @hobbes.id, adopt_application_id: francis.id, approval: false)
+
+      expect(@shelter.count_of_apps).to eq(1)
+
+      PetApplication.create(pet_id: @hobbes.id, adopt_application_id: john_jones.id, approval: false)
+
+      expect(@shelter.count_of_apps).to eq(2)
+    end
+
   end
 end
