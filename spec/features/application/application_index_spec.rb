@@ -9,6 +9,7 @@ RSpec.describe "pet applications index", type: :feature do
                                zip: "80231",
                                phone: "2023332291",
                                description: "I am a perfect human.")
+                               
     @peter_pan = AdoptApplication.create(name: "Peter Pan",
                                address: "Mars St",
                                city: "Mars Capital",
