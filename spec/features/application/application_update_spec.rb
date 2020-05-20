@@ -83,8 +83,10 @@ RSpec.describe "Approving an Application", type: :feature do
 
     visit "/applications/#{john_jones.id}"
     within ".app-#{@sonic.id}" do
-      expect(page).to_not have_button("Approve Application")
+      click_button("Approve Application")
     end
+    expect(page).to have_content("#{@sonic.name} is pending adoption elsewhere.")
+    expect(current_path).to eq("/applications/#{john_jones.id}")
 
     visit "/pets/#{@sonic.id}/applications"
     expect(page).to have_content("#{john_jones.name}")
