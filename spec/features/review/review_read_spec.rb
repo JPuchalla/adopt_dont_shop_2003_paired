@@ -28,7 +28,6 @@ RSpec.describe "Shelter review page", type: :feature do
     expect(page).to have_content(review_2.title)
     expect(page).to have_content(review_2.rating)
     expect(page).to have_content(review_2.content)
-
   end
 
 end

@@ -37,7 +37,6 @@ RSpec.describe "Create shelter page", type: :feature do
   end
 
   it "shows a flash message when submitting incomplete information for a shelter" do
-
     visit '/shelters'
     click_button "New Shelter"
 
@@ -80,7 +79,6 @@ RSpec.describe "Create shelter page", type: :feature do
     click_button "Create Shelter"
     expect(current_path).to eq('/shelters/new')
     expect(page).to have_content("Missing zip code to create a shelter.")
-
   end
 
 end

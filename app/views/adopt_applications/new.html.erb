@@ -3,7 +3,7 @@
 <%= form_tag "/applications" do %>
   <% @favorites.each do |pet_id|%>
     <% pet = favorite.get_pet(pet_id) %>
-    <p class = "checkbox-<%= pet_id %>"><%= pet.name %>:
+    <p class = "checkbox-<%= pet_id %>"><%= link_to pet.name, "/pets/#{pet.id}" %>:
     <%= check_box_tag 'pet_ids[]', pet_id %></p>
   <% end %>
   <%= label_tag :name, "Applicant Name:" %>

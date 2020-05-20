@@ -39,7 +39,6 @@ RSpec.describe "Delete shelter", type: :feature do
   end
 
   it "clicking delete button shows flash message" do
-
     peter = AdoptApplication.create(name: "Peter",
                                address: "2080 S. Quebec St.",
                                city: "Denver",
@@ -49,9 +48,7 @@ RSpec.describe "Delete shelter", type: :feature do
                                description: "I am a perfect human.")
 
     PetApplication.create(pet_id: @hobbes.id, adopt_application_id: peter.id, approval: true)
-
     @hobbes.update(adopt_status: "pending")
-
 
     visit '/shelters'
     click_button "Delete #{@shelter_1.name}"
@@ -61,7 +58,6 @@ RSpec.describe "Delete shelter", type: :feature do
   end
 
   it "can delete all pets with the shelter if there is no approved application" do
-
     visit '/shelters'
     click_button "Delete #{@shelter_1.name}"
     expect(page).to_not have_content(@shelter_1.name)
@@ -70,7 +66,6 @@ RSpec.describe "Delete shelter", type: :feature do
   end
 
   it "can delete all reviews with the shelter" do
-
     review_1 = Review.create(title: "Awesome place!",
                             rating: 5,
                             content: "Truly enjoyed our time working with this shelter. Staff was great, and we found our perfect pet!",

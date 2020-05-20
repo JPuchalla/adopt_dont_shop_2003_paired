@@ -180,4 +180,15 @@ RSpec.describe "Applying for adoption", type: :feature do
 
     expect(page).to have_content("Application submitted!")
   end
+
+  it "has a link to animal via their name on the form" do
+    visit "/pets/#{@cassidy.id}"
+    click_button "Favorite Pet"
+    visit "/favorites"
+    click_button "Apply for Adoption"
+    within (".checkbox-#{@cassidy.id}") do
+      click_link "#{@cassidy.name}"
+    end
+    expect(current_path).to eq("/pets/#{@cassidy.id}")
+  end
 end
