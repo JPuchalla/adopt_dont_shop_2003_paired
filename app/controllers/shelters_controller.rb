@@ -3,7 +3,7 @@ class SheltersController < ApplicationController
     if params[:sort] == "alpha"
       @shelters = Shelter.order(:name)
     elsif params[:sort] == "by_pets"
-      @shelters = Shelter.all.sort_by{|shelter| shelter.pets.number_pets}.reverse
+      @shelters = Shelter.all.sort_by{|shelter| shelter.count_of_pets}.reverse
     else
       @shelters = Shelter.all
     end

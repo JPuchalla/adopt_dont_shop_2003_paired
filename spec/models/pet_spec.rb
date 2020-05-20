@@ -45,12 +45,5 @@ describe Pet, type: :model do
       expect(@hobbes.is_adoptable?).to eq(true)
     end
 
-    it ".number_pets" do
-      pets = Pet.all
-      dfl_pets = @shelter_1.pets
-
-      expect(pets.number_pets).to eq(2)
-      expect(dfl_pets.number_pets).to eq(1)
-    end
   end
 end

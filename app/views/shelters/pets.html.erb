@@ -12,7 +12,7 @@
   <%= link_to "Show Only Adoptable Pets", "/shelters/#{@shelter.id}/pets?adoptable=true" %></p>
 <% end %>
 <br/>
-<p>There are <%= @shelter.pets.number_pets %> pets at the shelter.</p>
+<p>There are <%= @shelter.count_of_pets %> pets at the shelter.</p>
 <br/>
 <% if @adoptable || @adoptable.nil? %>
   <% @adopt.each do |pet| %>
